@@ -1,0 +1,29 @@
+export const EVENT_STATES = [
+  "Programado",
+  "En Boleteria",
+  "En Vivo",
+  "Finalizado",
+  "Cancelado",
+] as const;
+
+export type EventState = (typeof EVENT_STATES)[number];
+
+export interface Event {
+  codigo: number;
+  nombre: string;
+  descripcion: string;
+  teatro: string;
+  ciudad: string;
+  fecha_inicio: Date;
+  fecha_fin: Date;
+  capacidad: number;
+  precio: number;
+  observaciones: string | null;
+  estado: EventState;
+}
+
+/** Filtros opcionales para consultar eventos (llegan como query params). */
+export interface EventFilters {
+  ciudad?: string | undefined;
+  estado?: string | undefined;
+}
