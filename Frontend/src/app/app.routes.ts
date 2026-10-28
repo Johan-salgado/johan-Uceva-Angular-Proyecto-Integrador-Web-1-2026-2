@@ -10,6 +10,8 @@ import { ClientCreateReservationPage } from './pages/client-create-reservation/c
 import { AgentEventsPage } from './pages/agent-events/agent-events.page';
 import { AgentReservationsPage } from './pages/agent-reservations/agent-reservations.page';
 import { AgentCreateEventPage } from './pages/agent-create-event/agent-create-event.page';
+import { EventCatalogPage } from './pages/event-catalog/event-catalog.page';
+import { ReservationReportPage } from './pages/reservation-report/reservation-report.page';
 
 export const routes: Routes = [
     {
@@ -35,6 +37,14 @@ export const routes: Routes = [
             {
                 path: "create-reservation/:id",
                 component: ClientCreateReservationPage
+            },
+            {
+                path: "catalog",
+                component: EventCatalogPage
+            },
+            {
+                path: "reservation-report",
+                component: ReservationReportPage
             },
             {
                 path: "",

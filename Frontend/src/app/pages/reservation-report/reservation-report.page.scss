@@ -1,0 +1,63 @@
+.report {
+  &__title {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  &__filter {
+    width: auto;
+    min-width: 12rem;
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.25rem;
+    border: 1px solid #e9ecef;
+    border-radius: 1rem;
+  }
+
+  &__summary-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+  }
+
+  &__summary-value {
+    font-size: 1.75rem;
+  }
+
+  &__panel {
+    border: 1px solid #e9ecef;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  &__code {
+    font-weight: 600;
+    color: #0d6efd;
+  }
+
+  &__status {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    &--pending {
+      color: #997404;
+      background-color: #fff3cd;
+    }
+
+    &--confirmed {
+      color: #0f5132;
+      background-color: #d1e7dd;
+    }
+
+    &--cancelled {
+      color: #842029;
+      background-color: #f8d7da;
+    }
+  }
+}

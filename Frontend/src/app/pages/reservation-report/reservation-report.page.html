@@ -1,0 +1,114 @@
+<section class="report container">
+
+  <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+    <div>
+      <h2 class="report__title">Reporte de reservas</h2>
+      <p class="text-secondary mb-0">
+        Reservaciones registradas junto con el evento al que pertenecen
+      </p>
+    </div>
+
+    <select
+      class="form-select report__filter"
+      aria-label="Filtrar por estado"
+      [ngModel]="selectedState()"
+      (ngModelChange)="onStateChange($event)"
+    >
+      <option value="">Todos los estados</option>
+      @for (state of states; track state) {
+        <option [value]="state">{{ state }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-4">
+      <div class="report__summary card">
+        <span class="report__summary-label">Reservaciones</span>
+        <strong class="report__summary-value">{{ totalReservations() }}</strong>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="report__summary card">
+        <span class="report__summary-label">Entradas (sin canceladas)</span>
+        <strong class="report__summary-value">{{ totalTickets() }}</strong>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="report__summary card">
+        <span class="report__summary-label">Recaudo (sin canceladas)</span>
+        <strong class="report__summary-value">
+          {{ totalRevenue() | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+        </strong>
+      </div>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+  } @else if (errorMessage()) {
+    <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
+      <span>{{ errorMessage() }}</span>
+      <button type="button" class="btn btn-sm btn-outline-danger" (click)="loadReport()">
+        Reintentar
+      </button>
+    </div>
+  } @else if (reservations().length === 0) {
+    <div class="alert alert-info" role="alert">
+      No hay reservaciones que coincidan con el estado seleccionado.
+    </div>
+  } @else {
+    <div class="card report__panel">
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Evento</th>
+              <th scope="col">Fecha de reserva</th>
+              <th scope="col" class="text-end">Entradas</th>
+              <th scope="col" class="text-end">Total</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (reservation of reservations(); track reservation.codigo) {
+              <tr>
+                <td><span class="report__code">#{{ reservation.codigo }}</span></td>
+                <td>
+                  <div class="fw-semibold">{{ reservation.cliente_nombre }}</div>
+                  <small class="text-secondary">{{ reservation.cliente_correo }}</small>
+                </td>
+                <td>
+                  <div class="fw-semibold">{{ reservation.evento_nombre }}</div>
+                  <small class="text-secondary">
+                    {{ reservation.evento_teatro }} · {{ reservation.evento_ciudad }}
+                  </small>
+                </td>
+                <td class="text-nowrap">{{ reservation.fecha | date: 'dd MMM y, h:mm a' }}</td>
+                <td class="text-end">{{ reservation.entradas }}</td>
+                <td class="text-end">
+                  {{ reservation.total | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+                </td>
+                <td>
+                  <span [class]="'report__status report__status--' + statusModifier(reservation.estado)">
+                    {{ reservation.estado }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+
+</section>

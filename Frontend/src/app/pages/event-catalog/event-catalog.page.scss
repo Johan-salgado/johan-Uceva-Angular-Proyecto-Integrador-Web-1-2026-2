@@ -1,0 +1,11 @@
+.events-section {
+  &__title {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .form-select {
+    width: auto;
+    min-width: 11rem;
+  }
+}

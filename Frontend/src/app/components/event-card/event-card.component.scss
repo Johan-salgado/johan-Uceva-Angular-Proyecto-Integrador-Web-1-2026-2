@@ -77,3 +77,19 @@
     padding-top: 1.25rem;
   }
 }
+
+.event-card__status--scheduled {
+  color: #6f42c1;
+}
+
+.event-card__status--live {
+  color: #198754;
+}
+
+.event-card__status--finished {
+  color: #6c757d;
+}
+
+.event-card__status--cancelled {
+  color: #dc3545;
+}

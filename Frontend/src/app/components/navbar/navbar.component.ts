@@ -20,6 +20,8 @@ export class NavbarComponent {
   clientConfig: NavbarConfig[] = [
     { url: '/client/events', label: 'Eventos', icon: 'calendar3' },
     { url: '/client/reservations', label: 'Reservaciones', icon: 'calendar3' },
+    { url: '/client/catalog', label: 'Cartelera', icon: 'calendar3' },
+    { url: '/client/reservation-report', label: 'Reporte de reservas', icon: 'calendar3' },
   ]
 
   agentConfig: NavbarConfig[] = [
