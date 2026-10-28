@@ -64,6 +64,39 @@ La relación es 1:N (un evento tiene muchas reservaciones). Los datos de prueba 
 - Docker Desktop (para PostgreSQL y pgAdmin)
 - Angular CLI (`npm install -g @angular/cli`)
 
+## Cómo ejecutar el proyecto
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/Johan-salgado/johan-Uceva-Angular-Proyecto-Integrador-Web-1-2026-2.git
+cd johan-Uceva-Angular-Proyecto-Integrador-Web-1-2026-2
+```
+
+### 2. Backend
+```bash
+cd Backend
+docker compose up -d      # levanta PostgreSQL (puerto 5433) y pgAdmin (puerto 8081)
+npm install
+npm run db:init           # crea las tablas
+npm run db:seed           # inserta los datos de prueba
+npm start                 # API en http://localhost:3000
+```
+
+El archivo `Backend/.env` define el puerto de la API y las credenciales de conexión a la base de datos.
+
+### 3. Frontend
+```bash
+cd Frontend
+npm install
+npm start                 # aplicación en http://localhost:4200
+```
+
+Las páginas del laboratorio se consultan en:
+- `http://localhost:4200/client/catalog`
+- `http://localhost:4200/client/reservation-report`
+
+> El backend debe estar en ejecución para que las páginas muestren datos.
+
 ## Tecnologías
 
 - **Frontend:** Angular 20, Bootstrap 5, Bootstrap Icons, RxJS
