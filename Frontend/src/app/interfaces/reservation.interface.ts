@@ -10,4 +10,6 @@ export interface Reservation {
     evento: Event;
 }
 
-export type ReservationState = 'Reservada' | 'Confirmada' | 'Cancelada';
+export const RESERVATION_STATES = ['Reservada', 'Confirmada', 'Cancelada'] as const;
+
+export type ReservationState = (typeof RESERVATION_STATES)[number];
